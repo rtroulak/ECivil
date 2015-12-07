@@ -1,0 +1,177 @@
+<html style="height:100%;">
+
+<head>
+<style>
+
+
+a.blue:link,a.blue:visited
+{
+display:inline;
+font-weight:bold;
+font-size:550%;
+color:white;
+background-color:blue;
+height:100%;
+text-align:center;
+text-decoration:none;
+padding-left:7%;
+padding-right:7%;
+}
+a.blue:hover,a.blue:active
+{
+background-color:#191970;
+}
+</style>
+
+
+<script
+src="http://maps.googleapis.com/maps/api/js?
+key=AIzaSyDMzdgWTDzbJ_T6DelL9fX302ntTaVwc6g&sensor=false">
+</script>
+
+<script>
+
+var irakleio=new google.maps.LatLng(35.329775,25.127656);
+var athens=new google.maps.LatLng(37.98534,23.726692);
+var agrinio=new google.maps.LatLng(38.623308,21.40789);
+var konstantinoupoli=new google.maps.LatLng(41.015138,28.968201);
+var xania=new google.maps.LatLng(35.517138,24.015427);
+var rethimno=new google.maps.LatLng(35.364486,24.481831);
+
+var directionDisplay;
+var directionsService = new google.maps.DirectionsService();
+
+function initialize()
+{
+
+directionsDisplay = new google.maps.DirectionsRenderer();
+
+var mapProp = {
+  center:irakleio,
+  zoom:5,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+
+var marker=new google.maps.Marker({
+  position:irakleio,
+  });
+marker.setMap(map);
+
+
+
+directionsDisplay.setMap(map);
+
+}
+
+
+
+function calculateDistances(dest) {
+        var service = new google.maps.DistanceMatrixService();
+        service.getDistanceMatrix(
+          {
+            origins: [irakleio],
+            destinations: [dest],
+            travelMode: google.maps.TravelMode.DRIVING,
+            unitSystem: google.maps.UnitSystem.METRIC,
+            avoidHighways: false,
+            avoidTolls: false
+          }, callback);
+}
+
+function callback(response, status) {
+        if (status != google.maps.DistanceMatrixStatus.OK) {
+          alert('Error was: ' + status);
+        } else {
+          var origins = response.originAddresses;
+          var destinations = response.destinationAddresses;
+          var outputDiv = document.getElementById('outputDiv');
+          outputDiv.innerHTML = '';
+
+          for (var i = 0; i < origins.length; i++) {
+            var results = response.rows[i].elements;
+            for (var j = 0; j < results.length; j++) {
+              outputDiv.innerHTML += origins[i] + ' to ' + destinations[j]
+                  + '(avoid tolls): ' + results[j].distance.text + ' in '
+                  + results[j].duration.text + '<br>';
+            }
+          }
+	  newPopup('contactme.html');
+        }
+}
+
+function calculateDistancesb(dest) {
+        var service = new google.maps.DistanceMatrixService();
+        service.getDistanceMatrix(
+          {
+            origins: [irakleio],
+            destinations: [dest],
+            travelMode: google.maps.TravelMode.DRIVING,
+            unitSystem: google.maps.UnitSystem.METRIC,
+            avoidHighways: false,
+            avoidTolls: true
+          }, callbackb);
+}
+
+
+function callbackb(response, status) {
+        if (status != google.maps.DistanceMatrixStatus.OK) {
+          alert('Error was: ' + status);
+        } else {
+          var origins = response.originAddresses;
+          var destinations = response.destinationAddresses;
+          var outputDiv = document.getElementById('outputDiv2');
+          outputDiv2.innerHTML = '';
+
+          for (var i = 0; i < origins.length; i++) {
+            var results = response.rows[i].elements;
+            for (var j = 0; j < results.length; j++) {
+              outputDiv2.innerHTML += origins[i] + ' to ' + destinations[j]
+                  + ': ' + results[j].distance.text + ' in '
+                  + results[j].duration.text + '<br>';
+            }
+          }
+	  newPopup('contactme.html');
+        }
+}
+
+function calcRoute(dest) {
+        var start = irakleio;
+        var end = dest;
+        var request = {
+            origin:start,
+            destination:end,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+        directionsService.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          }
+        });
+}
+// Popup window code
+function newPopup(url) {
+	popupWindow = window.open(
+		url,'popUpWindow','height=70,width=80,left=10,top=10,resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,directories=no,status=yes')
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+</head>
+<body  style="background-color:black;height:80%;">
+
+<div style="height:85%;">
+	<div id="googleMap" style="width:70%;height:90%;margin-top:150px;margin-left:200px;color:black;">
+	</div>
+</div>
+<div style="height:15%;background-color:blue;">
+<a class="blue" href="monitor.html" style="float:left">Agent</a>
+<a class="blue" href="type.html" style="float:left">Info</a>
+<a class="blue" href="options.html" style="float:right">Back</a>
+
+</div>
+</body>
+</html>

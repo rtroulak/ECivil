@@ -1,0 +1,9 @@
+body {
+	text-align:center;
+	background-color:#FDF5E6
+	}
+	
+a:link {color:#B8B8B8 ;text-decoration:none;}    /* unvisited link */
+a:visited {color:#B8B8B8 ;text-decoration:none;} /* visited link */
+a:hover {color:white;padding:5px;text-decoration:none;background-color:#200000 ;playSound('vidaloca.mp3');}   /* mouse over link */
+a:active {color:#0000FF;text-decoration:none;}  /* selected link */

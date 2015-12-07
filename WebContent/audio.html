@@ -1,0 +1,57 @@
+
+<html>
+  <body>
+    <audio controls autoplay></audio>
+    <script type="text/javascript" src="recorder.js"> </script>
+
+    <input onclick="startRecording()" type="button" value="Start Rec" />
+    <input onclick="stopRecording()" type="button" value="Stop Rec and Play" />
+
+    <input onclick="stopRecording()" type="button" value="Send" />  
+
+    <script>
+      var onFail = function(e) {
+        console.log('Rejected!', e);
+      };
+
+      var onSuccess = function(s) {
+        var context;
+        if (typeof AudioContext !== "undefined") {
+          context = new AudioContext();
+        } else if (typeof webkitAudioContext !== "undefined") {
+          context = new webkitAudioContext();
+        } else {
+          throw new Error('AudioContext not supported. :(');
+        }
+
+        var mediaStreamSource = context.createMediaStreamSource(s);
+        recorder = new Recorder(mediaStreamSource);
+        recorder.record();
+
+        // audio loopback
+        // mediaStreamSource.connect(context.destination);
+      }
+
+      window.URL = window.URL || window.webkitURL;
+      navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+      var recorder;
+      var audio = document.querySelector('audio');
+
+      function startRecording() {
+        if (navigator.getUserMedia) {
+          navigator.getUserMedia({audio: true}, onSuccess, onFail);
+        } else {
+          console.log('navigator.getUserMedia not present');
+        }
+      }
+
+      function stopRecording() {
+        recorder.stop();
+        recorder.exportWAV(function(s) {
+          audio.src = window.URL.createObjectURL(s);
+        });
+      }
+    </script>
+  </body>
+</html>

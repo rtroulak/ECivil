@@ -1,0 +1,43 @@
+<html>
+  <body style="background-color:black;">
+    <video autoplay id="vid" style="display:none;"></video>
+    <canvas id="canvas" width="800" height="400" style="border:1px solid #d3d3d3;"></canvas><br>
+    <button onclick="snapshot()">Take Picture</button>
+
+    <form name="submitForm" method="POST" action="/TestProject/servlet/post.Option">
+      <input type="hidden" name="picture" id="pictureValue">
+      <button onclick="javascript:document.submitForm.submit()">Submit Picture</button>
+    </form>
+
+    <script type="text/javascript">
+
+	var video = document.querySelector("#vid");
+	var canvas = document.querySelector('#canvas');
+	var ctx = canvas.getContext('2d');
+	var localMediaStream = null;
+
+	var onCameraFail = function (e) {
+	    console.log('Camera did not work.', e);
+	};
+
+	function snapshot() {
+	    if (localMediaStream) {
+		ctx.drawImage(video, 0, 0);
+		// Store it as a base64 image
+                document.getElementById("pictureValue").value = canvas.toDataURL("image/png")
+	    }
+	}
+
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+	window.URL = window.URL || window.webkitURL;
+	navigator.getUserMedia({video:true}, function (stream) {
+	    video.src = window.URL.createObjectURL(stream);
+	    localMediaStream = stream;
+	}, onCameraFail);
+
+    </script>
+
+
+
+  </body>
+</html>

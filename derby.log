@@ -1,0 +1,31 @@
+Tue Jun 04 22:29:00 EEST 2013 : Apache Derby Network Server - 10.8.2.2 - (1181258) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Tue Jun 04 22:29:16 EEST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-013f-10a9-f083-00000000002e 
+on database directory C:\Users\Gtroll\workspace\TestProject\admindb  with class loader sun.misc.Launcher$AppClassLoader@2c91e143 
+Loaded from file:/C:/eclipse/plugins/org.apache.derby.core_10.8.2/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_17-b02
+user.dir=C:\Users\Gtroll\workspace\TestProject
+derby.system.home=.
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue Jun 04 23:06:48 EEST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance 610e402f-013f-10a9-f083-00000000002e 
+on database directory C:\Users\Gtroll\workspace\TestProject\ecivildb  with class loader sun.misc.Launcher$AppClassLoader@2c91e143 
+Loaded from file:/C:/eclipse/plugins/org.apache.derby.core_10.8.2/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_17-b02
+user.dir=C:\Users\Gtroll\workspace\TestProject
+derby.system.home=.
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Jun 05 00:26:24 EEST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance 46a08075-013f-10a9-f083-00000000002e 
+on database directory C:\Users\Gtroll\workspace\TestProject\eventdb  with class loader sun.misc.Launcher$AppClassLoader@2c91e143 
+Loaded from file:/C:/eclipse/plugins/org.apache.derby.core_10.8.2/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_17-b02
+user.dir=C:\Users\Gtroll\workspace\TestProject
+derby.system.home=.
+Database Class Loader started - derby.database.classpath=''
